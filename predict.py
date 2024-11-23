@@ -1,5 +1,7 @@
 import pickle
-
+from flask import Flask
+from flask import request
+from flask import jsonify
 f_name = 'model.bin'
 with open(f_name,"rb") as f_in:
 	(dv,model) = pickle.load(f_in)
@@ -38,7 +40,7 @@ def predict():
             'quality_score': float(prediction),
             'quality_category': quality_category,
         }
-
+        print(result)
         return jsonify(result)
     elif isinstance(banana, list):
         results = []
@@ -57,7 +59,7 @@ def predict():
                 'quality_score': float(prediction),
                 'quality_category': quality_category,
             })
-
+        print(results)
         return jsonify(results)
 
 
